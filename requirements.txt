@@ -1,3 +1,3 @@
-python -m pip install --upgrade pip
-python -m pip install pymongo
-python -m pip install datetime
+streamlit == 0.75.0
+py -m pip install pymongo
+py -m pip install datetime
