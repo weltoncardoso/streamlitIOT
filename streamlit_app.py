@@ -1,6 +1,4 @@
 import streamlit as st
-# To make things easier later, we're also importing numpy and pandas for
-# working with sample data.
 import numpy as np
 import pandas as pd
 import time
@@ -33,23 +31,25 @@ mongo_docs_dados=list(dados)
 
 
 
-DATA = pd.DataFrame(mongo_docs_dados)
-DATA['date'] = DATA.ts.apply(lambda x: datetime.fromtimestamp(x))
-DATA.rename({"long": "lon"}, axis=1, inplace=True)
+data = pd.DataFrame(mongo_docs_dados)
+data['date'] = data.ts.apply(lambda x: datetime.fromtimestamp(x))
+data.rename({"long": "lon"}, axis=1, inplace=True)
+data['date'] = pd.to_datetime(data['date'])
 
 # salvando arquivo tratado
-DATA.to_csv('C:/Users/Welton Cardoso/Desktop/ibtiCodigosPython/dadosProjetoIOT/arquivo.csv')
-DATA_URL = ('C:/Users/Welton Cardoso/Desktop/ibtiCodigosPython/dadosProjetoIOT/arquivo.csv')
+# DATA.to_csv('C:/Users/Welton Cardoso/Desktop/ibtiCodigosPython/dadosProjetoIOT/arquivo.csv')
+# DATA_URL = ('C:/Users/Welton Cardoso/Desktop/ibtiCodigosPython/dadosProjetoIOT/arquivo.csv')
+# # DATA_URL = DATA.to_csv()
 
-@st.cache
-def load_data(nrows):
-    data = pd.read_csv(DATA_URL, nrows=nrows)
-    lowercase = lambda x: str(x).lower()
-    data.rename(lowercase, axis='columns', inplace=True)
-    data['date'] = pd.to_datetime(data['date'])
-    return data
+# @st.cache
+# def load_data(nrows):
+#     data = pd.read_csv(DATA_URL, nrows=nrows)
+#     lowercase = lambda x: str(x).lower()
+#     data.rename(lowercase, axis='columns', inplace=True)
+#     data['date'] = pd.to_datetime(data['date'])
+#     return data
 
-data = load_data(10000)
+#data = load_data()
 
 # SIDEBAR 
 #numero de arquivos 
