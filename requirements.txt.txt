@@ -1,0 +1,5 @@
+python -m pip install pandas 
+python -m pip install pymongo 
+python -m pip install streamlit 
+python -m pip install datetime
+
